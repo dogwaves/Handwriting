@@ -12,7 +12,7 @@ LEARNING_RATE_BASE =  0.8
 LEARNING_RATE_DECAY = 0.99
 
 REGULARIZATION_RATE = 0.0001
-TRAINING_STEPS = 5000
+TRAINING_STEPS = 3000
 MOVING_AVERAGE_DECAY = 0.99
 
 CKPT_PATH = "/path/to/MNIST_data/"
@@ -58,7 +58,6 @@ def train(mnist):
 			if i % 1000 ==0:
 				print("After %d training steps, loss on training, loss is %g." % (step, loss_value))
 				saver.save(sess, os.path.join(CKPT_PATH, CKPT_NAME), global_step = global_step)		
-			xs, ys = mnist.train.next_batch(BATCH_SIZE)
 			sess.run(train_op, feed_dict = {x: xs, y_: ys})
 	writer = tf.summary.FileWriter("/path/to/log", tf.get_default_graph())
 
